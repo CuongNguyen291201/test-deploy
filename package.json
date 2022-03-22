@@ -1,0 +1,33 @@
+{
+  "name": "@koolsoftelearning/web-youreducation",
+  "version": "1.0.0",
+  "description": "Web YourEducation Template App",
+  "repository": "git@bitbucket.org:ksdevs/web-youreducation.git",
+  "author": "duypv <duypv98@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "1.8.0",
+    "next": "10.0.5",
+    "next-redux-wrapper": "6.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-redux": "7.2.6",
+    "redux": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.21",
+    "@types/react": "17.0.39",
+    "@zeit/next-css": "1.0.1",
+    "@zeit/next-sass": "1.0.1",
+    "next-compose-plugins": "2.2.1",
+    "next-images": "1.8.4",
+    "sass": "1.32.8",
+    "typescript": "4.4.2"
+  }
+}
