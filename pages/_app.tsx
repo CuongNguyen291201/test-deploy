@@ -1,9 +1,25 @@
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { AppProps } from "next/app";
 import { FC } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { wrapper } from "../app/store";
+import ErrorView from "../features/error/ErrorView";
+import lightTheme from "../styles/themes/lightTheme";
+import "../styles/_global.scss";
+import createEmotionCache from "../utils/createEmotionCache";
 
-const App: FC<AppProps> = ({ Component, pageProps }) => (
-  <Component {...pageProps} />
+const clientSideEmotionCache = createEmotionCache();
+
+const App: FC<AppProps & { emotionCache: EmotionCache }> = ({ Component, pageProps, emotionCache = clientSideEmotionCache }) => (
+  <CacheProvider value={emotionCache}>
+    <ThemeProvider theme={lightTheme}>
+      <ErrorBoundary FallbackComponent={({ error }) => <Container><ErrorView message={error.message} /></Container>}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ErrorBoundary>
+    </ThemeProvider>
+  </CacheProvider>
 );
 
 export default wrapper.withRedux(App);
