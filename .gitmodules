@@ -1,0 +1,3 @@
+[submodule "modules/share"]
+	path = modules/share
+	url = git@bitbucket.org:ksdevs/elearning-model.git

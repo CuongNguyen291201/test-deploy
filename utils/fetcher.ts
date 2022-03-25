@@ -1,6 +1,16 @@
 import fetch from "isomorphic-fetch";
 import qs from "query-string";
 
+export enum ResponseStatusCode {
+  success = 200,
+  notFound = 404,
+  internal = 500
+}
+
+export const getEndpoint = (endpoint: string, local?: boolean) => {
+  return local ? `${process.env.NEXT_PUBLIC_LOCAL_ENDPOINT || ''}${endpoint}` : endpoint;
+}
+
 export class FetchError extends Error {
   constructor(msg?: string) {
     super();
@@ -18,7 +28,7 @@ export type RequestData = {
   endpoint: string;
   method?: "GET" | "POST",
   body?: any;
-  customHeaders: any;
+  customHeaders?: any;
   bodyType?: "json" | "multipart",
   responseType?: "json" | "buffer"
   withCredentials?: boolean;
@@ -52,7 +62,7 @@ const request = async (args: RequestData) => {
     });
     const data = responseType === "buffer" ? await response.arrayBuffer() : await response.json();
     return {
-      status: response.status,
+      error: response.status !== ResponseStatusCode.success,
       data
     }
   } catch (error) {
@@ -60,7 +70,7 @@ const request = async (args: RequestData) => {
   }
 }
 
-export const get = (args: Omit<RequestData, "method" | "body"> & { params: any }) => {
+export const get = (args: Omit<RequestData, "method" | "body"> & { params?: any }) => {
   const { endpoint, params, ...rest } = args;
   let _endpoint = endpoint;
   if (params && !(params.constructor === Object && !Object.keys(params).length)) {
