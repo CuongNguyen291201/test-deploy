@@ -1,1 +1,1 @@
-export const ROUTER_LEARN = "learn";
+export const ROUTER_LEARN = "study";

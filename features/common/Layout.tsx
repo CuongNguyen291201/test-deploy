@@ -2,7 +2,7 @@ import { AppBar } from "@mui/material";
 import Head from "next/head";
 import { PropsWithChildren } from "react";
 import AppSetting from "../../modules/share/model/appSetting";
-import MainMenu from "./Menu";
+import MainMenu from "./MainMenu";
 
 export type LayoutProps = {
   slug?: string;
@@ -32,7 +32,7 @@ const Layout = (props: PropsWithChildren<LayoutProps>) => {
       <link rel="shortcut icon" href={favicon || '/favicon.ico'} />
       {!!canonical && <link rel="canonical" href={canonical} />}
     </Head>
-    <AppBar position="static" color="transparent" elevation={0}>
+    <AppBar position="static" color="transparent" elevation={1}>
       <MainMenu logo={appLogo} homeHref={process.env.NODE_ENV === "production" ? siteAddress : "/"} />
     </AppBar>
     {children}

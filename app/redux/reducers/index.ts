@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import appInfoSlice, { AppInfoState } from "../../../features/appInfo/appInfo.slice";
-import topicSlice, { TopicState } from "../../../features/learn/topic.slice";
+import topicSlice, { TopicState } from "../../../features/study/topic.slice";
 import counterReducer from "./couter.reducers";
 
 export interface _AppState {
