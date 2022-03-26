@@ -8,6 +8,7 @@ import { setAppInfo } from "../../features/appInfo/appInfo.slice";
 import Layout from "../../features/common/Layout";
 import { apiGetEntryTopicsBySlugs } from "../../features/learn/topic.api";
 import { setCurrentTopic, setRootTopic, setSubTopic } from "../../features/learn/topic.slice";
+import LearnView from "../../features/learn/LearnView";
 
 type LearnPageProps = {
   slug: string;
@@ -27,7 +28,7 @@ const LearnPage = (props: PropsWithoutRef<LearnPageProps>) => {
   }, [router.asPath, router.isReady]);
 
   return (<Layout {...appInfo} slug={props.slug}>
-    LearnPage
+    <LearnView />
   </Layout>)
 }
 
