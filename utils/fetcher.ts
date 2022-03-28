@@ -1,5 +1,6 @@
 import fetch from "isomorphic-fetch";
 import qs from "query-string";
+import { response_status } from "../modules/share/api_services/http_status";
 
 export enum ResponseStatusCode {
   success = 200,
@@ -79,6 +80,22 @@ export const get = (args: Omit<RequestData, "method" | "body"> & { params?: any 
   return request({ endpoint: _endpoint, ...rest });
 }
 
+export const getWithStatus = async (args: Omit<RequestData, "method" | "body"> & { params?: any }) => {
+  const { data, error } = await get(args);
+  return {
+    error: error || data?.status !== response_status.success,
+    data: data?.data 
+  }
+}
+
 export const post = (args: Omit<RequestData, "method">) => {
   return request({ method: "POST", ...args });
+}
+
+export const postWithStatus = async (args: Omit<RequestData, "method">) => {
+  const { data, error } = await post(args);
+  return {
+    error: error || data?.status !== response_status.success,
+    data: data?.data
+  }
 }

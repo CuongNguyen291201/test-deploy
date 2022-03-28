@@ -1,0 +1,1 @@
+export const LOCAL_USER_ID_KEY = "_static_uid";

@@ -1,5 +1,6 @@
-import Topic from "../../modules/share/model/topic";
-import { getEndpoint, post } from "../../utils/fetcher";
+import Topic, { ITopic } from "../../modules/share/model/topic";
+import TopicExercise from "../../modules/share/model/topicExercise";
+import { getEndpoint, post, postWithStatus } from "../../utils/fetcher";
 
 export const apiGetEntryTopicsBySlugs = async (args: { slugs: string[]; local?: boolean }): Promise<{ notFound: boolean; data: Topic[]; error?: boolean }> => {
   const { local = false, slugs } = args;
@@ -7,8 +8,19 @@ export const apiGetEntryTopicsBySlugs = async (args: { slugs: string[]; local?: 
   return error ? { notFound: true, data: [], error: true } : data;
 }
 
-export const apiOffsetTopicsByParentId =async (args: {
-  parentId: string;
-}) => {
-  
+export const apiOffsetTopicsByParentId = async (args: {
+  parentId: string | null;
+  courseId: string;
+  field?: keyof ITopic;
+  limit?: number;
+  asc?: boolean;
+  skip?: number;
+  userId?: string;
+  private?: boolean;
+  topicFields?: Array<keyof Topic>;
+  exerciseFields?: Array<keyof TopicExercise>;
+}): Promise<Topic[]> => {
+  const { field = "orderIndex", asc = true, skip = 0, ...rest } = args;
+  const { data, error } = await postWithStatus({ endpoint: '/api/offset-topics-by-parent-id', body: { field, asc, skip, ...rest } });
+  return error ? [] : data;
 }
