@@ -25,7 +25,7 @@ const StudyView = () => {
 
   return <LoadingContainer loading={loading} useDelay>
     <div id="main-learn-view">
-      <Container maxWidth="xxl">
+      <Container maxWidth="xl">
         <h1 className="root-topic-name">{`${rootTopic.name}${subTopic ? `: ${subTopic.name}` : ''}`}</h1>
         <Grid container spacing={1}>
           {/* Question Palette */}

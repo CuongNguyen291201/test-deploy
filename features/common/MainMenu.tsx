@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const MainMenu = (props: PropsWithoutRef<{ logo?: string; homeHref?: string; }>) => {
   const { logo, homeHref = "/" } = props;
-  return (<Container maxWidth="xxl">
+  return (<Container maxWidth="xl">
     <div style={{ height: 100 }}>
       <Link href={homeHref}>
         <a>

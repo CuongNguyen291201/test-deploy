@@ -5,7 +5,7 @@ import ErrorView from "../features/error/ErrorView";
 
 const Error = (props: PropsWithoutRef<{ statusCode?: number }>) => {
   const { statusCode = 500 } = props;
-  return (<Container maxWidth="xxl">
+  return (<Container maxWidth="xl">
     <ErrorView message={`Error (${statusCode})`} />
   </Container>)
 }
