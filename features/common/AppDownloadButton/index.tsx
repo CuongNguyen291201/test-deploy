@@ -1,4 +1,5 @@
-import { memo, PropsWithoutRef, useMemo, useState } from "react";
+import classNames from "classnames";
+import { CSSProperties, memo, PropsWithoutRef, useMemo, useState } from "react";
 // @ts-ignore
 import AppStoreDarkIcon from "../assets/app-store-dark.svg";
 // @ts-ignore
@@ -8,18 +9,17 @@ import CHPlayDarkIcon from "../assets/ch-play-dark.svg";
 // @ts-ignore
 import CHPlayLightIcon from "../assets/ch-play-light.svg";
 import "./style.scss";
-import classNames from "classnames";
 
 const AppDownloadButton = (props: PropsWithoutRef<{
-  link?: string; source: "chplay" | "appstore"; className?: string
+  link?: string; source: "chplay" | "appstore"; className?: string; linkStyle?: CSSProperties
 }>) => {
-  const { link, source, className } = props;
+  const { link, source, className, linkStyle } = props;
   const icons = useMemo(() => ({
     iconDark: source === "chplay" ? CHPlayDarkIcon : AppStoreDarkIcon,
     iconLight: source === "chplay" ? CHPlayLightIcon : AppStoreLightIcon
   }), [source]);
   const [hover, setHover] = useState(false);
-  return (<a href={link} target="_blank" className="plain-anchor-tag">
+  return (<a href={link} target="_blank" className="plain-anchor-tag" style={{ ...linkStyle }}>
     <div className={classNames("app-download-btn", className || '')} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <img src={hover ? icons.iconLight : icons.iconDark} alt={source} className="app-download-icon" />
       <div className="app-download-desc">

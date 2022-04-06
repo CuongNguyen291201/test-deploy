@@ -24,7 +24,7 @@ const Header = () => {
         <Grid item xs={6}>
           <div className={classNames("app-buttons", isMobile ? "hide-on-mobile" : "")}>
             {/* CH Play & AppStore */}
-            <AppDownloadButton source="chplay" link={appInfo.linkGooglePlay} className="app-button-left" />
+            <AppDownloadButton source="chplay" link={appInfo.linkGooglePlay} linkStyle={{ marginRight: "30px" }} />
             <AppDownloadButton source="appstore" link={appInfo.linkAppStore} />
           </div>
         </Grid>
