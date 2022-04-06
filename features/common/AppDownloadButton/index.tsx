@@ -19,7 +19,7 @@ const AppDownloadButton = (props: PropsWithoutRef<{
     iconLight: source === "chplay" ? CHPlayLightIcon : AppStoreLightIcon
   }), [source]);
   const [hover, setHover] = useState(false);
-  return (<a href={link} className="plain-anchor-tag">
+  return (<a href={link} target="_blank" className="plain-anchor-tag">
     <div className={classNames("app-download-btn", className || '')} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <img src={hover ? icons.iconLight : icons.iconDark} alt={source} className="app-download-icon" />
       <div className="app-download-desc">
