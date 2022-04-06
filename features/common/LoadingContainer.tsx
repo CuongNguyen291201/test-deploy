@@ -19,11 +19,11 @@ const LoadingContainer = (props: PropsWithChildren<{ loading?: boolean; useDelay
   }, [loading, useDelay]);
 
   return isDelay ? (<Backdrop
-    sx={{ color: "#fff" }}
+    sx={{ color: "#fff", background: "#ffffffcc" }}
     open={true}
     transitionDuration={500}
   >
-    <CircularProgress color="inherit" />
+    {/* <CircularProgress color="inherit" /> */}
   </Backdrop>) : <>{children}</>
 }
 
