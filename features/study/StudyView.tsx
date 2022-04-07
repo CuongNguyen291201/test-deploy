@@ -24,16 +24,14 @@ const StudyView = () => {
   }, [loading]);
 
   return <LoadingContainer loading={loading} useDelay>
-    <div id="main-learn-view">
+    <div id="main-study-view">
       <Container maxWidth="xl">
         <h1 className="root-topic-name">{`${rootTopic.name}${subTopic ? `: ${subTopic.name}` : ''}`}</h1>
         <Grid container spacing={1}>
           {/* Question Palette */}
           <Grid item xs={12} md={3}>
             <div>Question Palette</div>
-            <div hidden={isDownBreakpoint}>
-              <CurrentTopicList />
-            </div>
+            <CurrentTopicList />
           </Grid>
 
           {/* Game */}
@@ -41,10 +39,7 @@ const StudyView = () => {
             Game
           </Grid>
 
-          {isDownBreakpoint && <Grid item xs={12} md={3}>
-            <CurrentTopicList />
-          </Grid>}
-          {/* Relative Subjects */}
+          {/* Subjects */}
           <Grid item xs={12} md={3}>
             <SubTopicList />
           </Grid>

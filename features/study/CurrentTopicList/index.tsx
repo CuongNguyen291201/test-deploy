@@ -1,15 +1,41 @@
-import { Card, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Grid } from "@mui/material";
+import classNames from "classnames";
+import _ from "lodash";
 import { useRouter } from "next/router";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "../../../app/hooks";
 import { ROUTER_STUDY } from "../../../app/router";
 import Topic from "../../../modules/share/model/topic";
 import { setCurrentTopic, setCurrentTopicIndex } from "../topic.slice";
+import "./style.scss";
+
+const TOPIC_CHUNK_SIZE = 3;
+// const currentTopicList = [
+//   { _id: 1, name: "Exercise 1" },
+//   { _id: 2, name: "Exercise 2" },
+//   { _id: 3, name: "Exercise 3" },
+//   { _id: 4, name: "Exercise 4" },
+//   { _id: 5, name: "Exercise 5" },
+//   { _id: 6, name: "Exercise 6" },
+//   { _id: 7, name: "Exercise 7" },
+//   { _id: 8, name: "Exercise 8" },
+//   { _id: 9, name: "Exercise 9" },
+// ]
 
 const CurrentTopicList = () => {
   const currentTopicList = useSelector((state) => state.topicState.currentList);
   const currentTopic = useSelector((state) => state.topicState.currentTopic);
   const currentTopicIdx = useSelector((state) => state.topicState.currentIndex);
   const nextTopic = currentTopicIdx !== currentTopicList.length - 1 ? currentTopicList[currentTopicIdx + 1] : null;
+
+  const topicChunks: Array<Array<Topic>> = useMemo(() =>
+    _.reduce(currentTopicList, (chunks, topic, index) => {
+      const chunkIndex = Math.floor(index / TOPIC_CHUNK_SIZE);
+      chunks[chunkIndex] = [...(chunks[chunkIndex] || []), topic];
+      return chunks
+    }, []),
+    [currentTopicList.length]
+  );
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -25,44 +51,31 @@ const CurrentTopicList = () => {
   }
 
   return (<div id="current-topic-list">
-    <Card id="current-topic-panel">
-      <div>
-        <List disablePadding>
-          <ListItem disablePadding sx={{ backgroundColor: "#A168FF", color: "#fff" }}>
-            <ListItemButton>
-              <ListItemText primary={currentTopic.name} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </div>
-
-      <div>
-        <div>Next:</div>
-        {nextTopic && <List disablePadding>
-          <ListItem disablePadding onClick={() => onClickTopic(nextTopic)}>
-            <ListItemButton>
-              <ListItemText primary={nextTopic.name} />
-            </ListItemButton>
-          </ListItem>
-        </List>}
-      </div>
-
-      <div>
-        <div>All:</div>
-        <List disablePadding>
-          {currentTopicList.map((topic, i) => {
-            const isActive = i === currentTopicIdx;
-            return (<ListItem disablePadding sx={isActive ? { backgroundColor: "#A168FF", color: "#fff" } : {}} key={topic._id}
-              onClick={() => onClickTopic(topic)}
-            >
-              <ListItemButton>
-                <ListItemText primary={topic.name} />
-              </ListItemButton>
-            </ListItem>)
-          })}
-        </List>
-      </div>
-    </Card>
+    {topicChunks.map((chunk, index) => {
+      const isReversed = index % 2 !== 0;
+      return <Grid container key={index} className="topic-levels" spacing={1} flexDirection={isReversed ? "row-reverse" : "row"}>
+        {chunk.map((topic, cIndex) => {
+          const isActive = currentTopic._id === topic._id;
+          const hasAfterConnector = cIndex < TOPIC_CHUNK_SIZE - 1 && cIndex !== chunk.length - 1;
+          const hasBeforeConnector = index > 0 && cIndex === 0;
+          return (
+            <Grid item xs={4} key={topic._id}>
+              <div
+                className={classNames(
+                  "topic-level-item",
+                  isActive ? "current-level" : "",
+                  hasAfterConnector ? (isReversed ? "after-connector-reversed" : "after-connector"): "",
+                  hasBeforeConnector ? "before-connector" : "",
+                )}
+                onClick={() => onClickTopic(topic)}
+              >
+                {topic.name}
+              </div>
+            </Grid>
+          )
+        })}
+      </Grid>
+    })}
   </div>)
 }
 
