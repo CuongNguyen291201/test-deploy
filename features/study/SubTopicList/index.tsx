@@ -1,15 +1,28 @@
-import { Card, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import classNames from "classnames";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { scroller } from "react-scroll";
 import { useDispatch, useSelector } from "../../../app/hooks";
 import { ROUTER_STUDY } from "../../../app/router";
 import Topic from "../../../modules/share/model/topic";
-import { setCurrentTopic, setCurrentTopicIndex, setTopicLoading } from "../topic.slice";
+import ScrollContainer from "../../common/ScrollContainer";
+import { setTopicLoading } from "../topic.slice";
+import "./style.scss";
 
 const SubTopicList = () => {
   const subTopicList = useSelector((state) => state.topicState.subList);
   const subTopic = useSelector((state) => state.topicState.subTopic);
   const dispatch = useDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    scroller.scrollTo(subTopic?._id, {
+      containerId: "sub-topic-list",
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart'
+    });
+  }, []);
 
   const onClickTopic = (item: Topic) => {
     if (item._id === subTopic._id) return;
@@ -19,24 +32,19 @@ const SubTopicList = () => {
     router.push(`${ROUTER_STUDY}/[...slugs]`, slug);
   }
 
-  return (<div id="sub-topic-list">
-    <Card id="sub-topic-panel">
-      <div>
-        <List disablePadding>
-          {subTopicList.map((topic, i) => {
-            const isActive = topic._id === subTopic._id;
-            return (<ListItem disablePadding sx={isActive ? { backgroundColor: "#A168FF", color: "#fff" } : {}} key={topic._id}
-              onClick={() => onClickTopic(topic)}
-            >
-              <ListItemButton>
-                <ListItemText primary={topic.name} />
-              </ListItemButton>
-            </ListItem>)
-          })}
-        </List>
-      </div>
-    </Card>
-  </div>)
+  return (<ScrollContainer thumbSize={50} style={{ height: "80vh" }} id="sub-topic-list">
+    {subTopicList.map((topic, i) => {
+      const isActive = topic._id === subTopic._id;
+      return (<div
+        id={topic._id}
+        key={topic._id}
+        className={classNames("sub-topic-item", isActive ? "sub-active" : "")}
+        onClick={() => onClickTopic(topic)}
+      >
+        {topic.name}
+      </div>)
+    })}
+  </ScrollContainer>)
 }
 
 export default SubTopicList;
