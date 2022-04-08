@@ -1,13 +1,15 @@
 import classNames from "classnames";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { scroller } from "react-scroll";
 import { useDispatch, useSelector } from "../../../app/hooks";
 import { ROUTER_STUDY } from "../../../app/router";
 import Topic from "../../../modules/share/model/topic";
-import ScrollContainer from "../../common/ScrollContainer";
 import { setTopicLoading } from "../topic.slice";
 import "./style.scss";
+
+const ScrollContainer = dynamic(() => import("../../common/ScrollContainer"), { ssr: false });
 
 const SubTopicList = () => {
   const subTopicList = useSelector((state) => state.topicState.subList);
@@ -36,12 +38,12 @@ const SubTopicList = () => {
     {subTopicList.map((topic, i) => {
       const isActive = topic._id === subTopic._id;
       return (<div
-        id={topic._id}
         key={topic._id}
+        id={topic._id}
         className={classNames("sub-topic-item", isActive ? "sub-active" : "")}
         onClick={() => onClickTopic(topic)}
       >
-        {topic.name}
+        <div className="dot-2">{topic.name}</div>
       </div>)
     })}
   </ScrollContainer>)
