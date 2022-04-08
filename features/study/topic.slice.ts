@@ -26,8 +26,25 @@ const initialState: TopicState = {
   currentIndex: -1
 }
 
-export const fetchTopicsList = createAsyncThunk("topic/fetchCurrentList", async(args: { parentId: string; courseId: string; userId?: string; target: "current" | "sub" }) => {
-  const topics = await apiOffsetTopicsByParentId({ courseId: args.courseId, parentId: args.parentId });
+export const fetchTopicsList = createAsyncThunk("topic/fetchCurrentList", async (args: { parentId: string; courseId: string; userId?: string; target: "current" | "sub" }) => {
+  const topics = await apiOffsetTopicsByParentId({
+    courseId: args.courseId,
+    parentId: args.parentId,
+    userId: args.userId,
+    topicFields: [
+      "_id",
+      "childType",
+      "type",
+      "status",
+      "videoUrl",
+      "courseId",
+      "name",
+      "shortDescription",
+      "slug",
+      "orderIndex",
+      "parentId"
+    ]
+  });
   return {
     data: topics,
     target: args.target

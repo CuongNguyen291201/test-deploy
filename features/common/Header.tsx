@@ -16,7 +16,7 @@ const Header = () => {
           {/* LOGO */}
           <div style={{ height: 100 }}>
             <Link href={process.env.NODE_ENV === "production" ? appInfo?.siteAddress : '/'}>
-              <a><img src={appInfo.appLogo} alt="logo" style={{ width: "auto", height: "100%" }} /></a>
+              <a><img src={appInfo?.appLogo} alt="logo" style={{ width: "auto", height: "100%" }} /></a>
             </Link>
           </div>
         </Grid>
@@ -24,8 +24,8 @@ const Header = () => {
         <Grid item xs={6}>
           <div className={classNames("app-buttons", isMobile ? "hide-on-mobile" : "")}>
             {/* CH Play & AppStore */}
-            <AppDownloadButton source="chplay" link={appInfo.linkGooglePlay} linkStyle={{ marginRight: "30px" }} />
-            <AppDownloadButton source="appstore" link={appInfo.linkAppStore} />
+            <AppDownloadButton source="chplay" link={appInfo?.linkGooglePlay} linkStyle={{ marginRight: "30px" }} />
+            <AppDownloadButton source="appstore" link={appInfo?.linkAppStore} />
           </div>
         </Grid>
 
