@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "../../app/hooks";
 import LoadingContainer from "../common/LoadingContainer";
 import CurrentTopicList from "./CurrentTopicList";
+import QuestionPalette from "./QuestionPalette";
 import "./studyView.scss";
 import SubTopicList from "./SubTopicList";
 import { fetchTopicsList } from "./topic.slice";
@@ -30,7 +31,7 @@ const StudyView = () => {
         <Grid container spacing={1}>
           {/* Question Palette */}
           <Grid item xs={12} md={3}>
-            <div>Question Palette</div>
+            <QuestionPalette />
             <CurrentTopicList />
           </Grid>
 
