@@ -1,16 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Topic from "../../modules/share/model/topic";
+import TopicExercise from "../../modules/share/model/topicExercise";
+import TopicProgress from "../../modules/share/model/topicProgress";
 import { apiOffsetTopicsByParentId } from "./topic.api";
+
+export type TopicItem = Topic & { topicProgress: TopicProgress; topicExercise: Pick<TopicExercise, "questionsNum" | "contentType" | "duration"> }
 
 export type TopicState = {
   rootTopic: Topic;
-  subTopic: Topic;
-  currentTopic: Topic;
+  subTopic: TopicItem;
+  currentTopic: TopicItem;
   loading: boolean;
   totalCurrent: number;
   totalSub: number;
-  currentList: Topic[];
-  subList: Topic[];
+  currentList: TopicItem[];
+  subList: TopicItem[];
   currentIndex: number;
 }
 
@@ -58,10 +62,10 @@ const topicSlice = createSlice({
     setRootTopic: (state, action: PayloadAction<Topic>) => {
       state.rootTopic = action.payload
     },
-    setSubTopic: (state, action: PayloadAction<Topic>) => {
+    setSubTopic: (state, action: PayloadAction<TopicItem>) => {
       state.subTopic = action.payload
     },
-    setCurrentTopic: (state, action: PayloadAction<Topic>) => {
+    setCurrentTopic: (state, action: PayloadAction<TopicItem>) => {
       state.currentTopic = action.payload;
     },
     setTopicLoading: (state, action: PayloadAction<boolean>) => {

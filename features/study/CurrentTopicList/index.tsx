@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "../../../app/hooks";
 import { ROUTER_STUDY } from "../../../app/router";
 import Topic from "../../../modules/share/model/topic";
-import { setCurrentTopic, setCurrentTopicIndex } from "../topic.slice";
+import { setCurrentTopic, setCurrentTopicIndex, TopicItem } from "../topic.slice";
 import "./style.scss";
 
 const TOPIC_CHUNK_SIZE = 3;
@@ -26,9 +26,9 @@ const CurrentTopicList = () => {
   const currentTopicList = useSelector((state) => state.topicState.currentList);
   const currentTopic = useSelector((state) => state.topicState.currentTopic);
   const currentTopicIdx = useSelector((state) => state.topicState.currentIndex);
-  const nextTopic = currentTopicIdx !== currentTopicList.length - 1 ? currentTopicList[currentTopicIdx + 1] : null;
+  // const nextTopic = currentTopicIdx !== currentTopicList.length - 1 ? currentTopicList[currentTopicIdx + 1] : null;
 
-  const topicChunks: Array<Array<Topic>> = useMemo(() =>
+  const topicChunks: Array<Array<TopicItem>> = useMemo(() =>
     _.reduce(currentTopicList, (chunks, topic, index) => {
       const chunkIndex = Math.floor(index / TOPIC_CHUNK_SIZE);
       chunks[chunkIndex] = [...(chunks[chunkIndex] || []), topic];
@@ -40,7 +40,7 @@ const CurrentTopicList = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const onClickTopic = (item: Topic) => {
+  const onClickTopic = (item: TopicItem) => {
     if (item._id === currentTopic._id) return;
     const currentIndex = currentTopicList.findIndex((topic) => topic._id === item._id);
     dispatch(setCurrentTopic(item));
@@ -58,18 +58,29 @@ const CurrentTopicList = () => {
           const isActive = currentTopic._id === topic._id;
           const hasAfterConnector = cIndex < TOPIC_CHUNK_SIZE - 1 && cIndex !== chunk.length - 1;
           const hasBeforeConnector = index > 0 && cIndex === 0;
+          const progress = currentTopic?.topicProgress?.progress || 0;
           return (
             <Grid item xs={4} key={topic._id}>
               <div
                 className={classNames(
                   "topic-level-item",
                   isActive ? "current-level" : "",
-                  hasAfterConnector ? (isReversed ? "after-connector-reversed" : "after-connector"): "",
+                  hasAfterConnector ? (isReversed ? "after-connector-reversed" : "after-connector") : "",
                   hasBeforeConnector ? "before-connector" : "",
+                  progress > 0 ? "has-progress-border" : "",
+                  progress === 0 && hasAfterConnector ? "after-connector-2" : "",
+                  progress === 0 && hasBeforeConnector ? "before-connector-2" : ""
                 )}
                 onClick={() => onClickTopic(topic)}
               >
-                {topic.name}
+                <span className="level-name">{topic.name}</span>
+                <div
+                  className="level-progress"
+                  style={{
+                    background: "#fff",
+                    width: `${progress}%`
+                  }}
+                />
               </div>
             </Grid>
           )

@@ -50,6 +50,9 @@
         @include level-connector(vertical);
       }
     }
+    &.before-connector-2::before, &.after-connector-2::after {
+        background: #e4e6ed !important;
+    }
 
     &.after-connector {
       &::after {
@@ -60,6 +63,22 @@
       &::after {
         @include level-connector(horizontal, true);
       }
+    }
+    &.has-progress-border {
+      border: 2px solid #fff;
+    }
+    .level-name {
+      z-index: 1;
+    }
+    .level-progress {
+      position: absolute;
+      height: calc(100% + 4px);
+      left: 0;
+      z-index: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
   }
 }
