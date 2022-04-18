@@ -60,7 +60,7 @@ const CurrentTopicList = () => {
           const hasBeforeConnector = index > 0 && cIndex === 0;
           const progress = currentTopic?.topicProgress?.progress || 0;
           return (
-            <Grid item xs={4} key={topic._id}>
+            <Grid item xs={Math.floor(12 / TOPIC_CHUNK_SIZE)} key={topic._id}>
               <div
                 className={classNames(
                   "topic-level-item",
