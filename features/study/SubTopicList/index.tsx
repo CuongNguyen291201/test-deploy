@@ -20,13 +20,15 @@ const SubTopicList = () => {
   const router = useRouter();
 
   useEffect(() => {
-    scroller.scrollTo(subTopic?._id, {
-      containerId: "sub-topic-list",
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart'
-    });
-  }, []);
+    setTimeout(() => {
+      scroller.scrollTo(subTopic?._id, {
+        containerId: "sub-topic-list",
+        duration: 800,
+        delay: 0,
+        smooth: 'easeInOutQuart'
+      });
+    }, 500);
+  }, [subTopic?._id]);
 
   const onClickTopic = (item: Topic) => {
     if (item._id === subTopic._id) return;
