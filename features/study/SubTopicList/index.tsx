@@ -43,7 +43,7 @@ const SubTopicList = () => {
     barColorPrimary: { backgroundColor: "#4CAF50" }
   }))(LinearProgress);
 
-  return (<ScrollContainer thumbSize={50} style={{ height: "80vh" }} id="sub-topic-list">
+  return (<ScrollContainer thumbSize={50} style={{ height: "67vh" }} id="sub-topic-list">
     {subTopicList.map((topic, i) => {
       const isActive = topic._id === subTopic._id;
       return (<div
