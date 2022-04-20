@@ -1,9 +1,9 @@
 import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
-import { rootReducers, _AppState } from "./redux/reducers";
+import { rootReducers } from "./redux/reducers";
 
 
-const reducer = (state: _AppState, action: any) => {
+const reducer = (state: ReturnType<typeof rootReducers>, action: any) => {
   if (action.type === HYDRATE) {
     return {
       ...state,
@@ -13,7 +13,7 @@ const reducer = (state: _AppState, action: any) => {
   return rootReducers(state, action);
 }
 
-const store: EnhancedStore<_AppState, any> = configureStore({
+const store: EnhancedStore<ReturnType<typeof rootReducers>, any> = configureStore({
   reducer,
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) => {
@@ -31,4 +31,4 @@ const makeStore = () => {
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export const wrapper = createWrapper<_AppState>(makeStore, { debug: false });
+export const wrapper = createWrapper(makeStore, { debug: false });

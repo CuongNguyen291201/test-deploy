@@ -3,7 +3,7 @@ import TopicExercise from "../../modules/share/model/topicExercise";
 import { getEndpoint, post, postWithStatus } from "../../utils/fetcher";
 import { TopicItem } from "./topic.slice";
 
-export const apiGetEntryTopicsBySlugs = async (args: { slugs: string[]; local?: boolean }): Promise<{ notFound: boolean; data: Topic[]; error?: boolean }> => {
+export const apiGetEntryTopicsBySlugs = async (args: { slugs: string[]; local?: boolean }): Promise<{ notFound: boolean; data: TopicItem[]; error?: boolean }> => {
   const { local = false, slugs } = args;
   const { data, error } = await post({ endpoint: getEndpoint('/api/get-entry-topics-by-slugs', local), body: { slugs, maxDepth: 3 } });
   return error ? { notFound: true, data: [], error: true } : data;
