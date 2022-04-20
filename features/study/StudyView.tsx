@@ -1,28 +1,14 @@
-import { Container, Grid, Theme, useMediaQuery } from "@mui/material";
-import { useEffect } from "react";
+import { Container, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "../../app/hooks";
 import LoadingContainer from "../common/LoadingContainer";
 import CurrentTopicList from "./CurrentTopicList";
 import QuestionPalette from "./QuestionPalette";
 import "./studyView.scss";
 import SubTopicList from "./SubTopicList";
-import { fetchTopicsList } from "./topic.slice";
 
 const StudyView = () => {
-  const { rootTopic, subTopic, currentTopic, loading } = useSelector((state) => state.topicState);
-  const { loading: authLoading, userId } = useSelector((state) => state.authState);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (!loading && !authLoading) {
-      if (currentTopic) {
-        dispatch(fetchTopicsList({ courseId: currentTopic.courseId, parentId: currentTopic.parentId, target: "current", userId }));
-      }
-      if (subTopic) {
-        dispatch(fetchTopicsList({ courseId: subTopic.courseId, parentId: subTopic.parentId, target: "sub", userId }));
-      }
-    }
-  }, [loading, authLoading, userId]);
+  const { rootTopic, subTopic, loading } = useSelector((state) => state.topicState);
+  const { loading: authLoading } = useSelector((state) => state.authState);
 
   return <LoadingContainer loading={loading || authLoading} useDelay>
     <div id="main-study-view">

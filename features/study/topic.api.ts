@@ -20,8 +20,9 @@ export const apiOffsetTopicsByParentId = async (args: {
   private?: boolean;
   topicFields?: Array<keyof Topic>;
   exerciseFields?: Array<keyof TopicExercise>;
+  serverSide?: boolean;
 }): Promise<TopicItem[]> => {
-  const { field = "orderIndex", asc = true, skip = 0, ...rest } = args;
-  const { data, error } = await postWithStatus({ endpoint: '/api/offset-topics-by-parent-id', body: { field, asc, skip, ...rest } });
+  const { field = "orderIndex", asc = true, skip = 0, serverSide = false, ...rest } = args;
+  const { data, error } = await postWithStatus({ endpoint: getEndpoint('/api/offset-topics-by-parent-id', serverSide), body: { field, asc, skip, ...rest } });
   return error ? [] : data;
 }

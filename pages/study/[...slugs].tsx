@@ -5,11 +5,12 @@ import { ROUTER_STUDY } from "../../app/router";
 import { wrapper } from "../../app/store";
 import { apiGetAppSettingDetails } from "../../features/appInfo/appInfo.api";
 import { setAppInfo } from "../../features/appInfo/appInfo.slice";
-import Layout from "../../features/common/Layout";
-import { apiGetEntryTopicsBySlugs } from "../../features/study/topic.api";
-import { setCurrentTopic, setRootTopic, setSubTopic, setTopicLoading } from "../../features/study/topic.slice";
-import StudyView from "../../features/study/StudyView";
 import { registerUserId } from "../../features/auth/auth.slice";
+import Layout from "../../features/common/Layout";
+import StudyView from "../../features/study/StudyView";
+import { apiGetEntryTopicsBySlugs } from "../../features/study/topic.api";
+import { setCurrentTopic, setRootTopic, setSubTopic, setTopicList, setTopicLoading } from "../../features/study/topic.slice";
+import { getRelaTopicList } from "../../features/study/topic.utils";
 
 type LearnPageProps = {
   slug: string;
@@ -41,14 +42,14 @@ const LearnPage = (props: PropsWithoutRef<LearnPageProps>) => {
   </Layout>)
 }
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ query, store, res }) => {
+export const getServerSideProps = wrapper.getServerSideProps(async ({ query, store }) => {
   const slugs = query.slugs as string[];
   if (!slugs.length) return { notFound: true }
-  
+
   const appName = process.env.NEXT_PUBLIC_APP_NAME;
   if (!appName) {
     throw new Error("appName is not defined");
-  }  
+  }
   const appInfo = await apiGetAppSettingDetails(appName);
   store.dispatch(setAppInfo(appInfo));
 
@@ -59,15 +60,22 @@ export const getServerSideProps = wrapper.getServerSideProps(async ({ query, sto
   }
   const [currentTopic] = data.slice(-1);
   const rootTopic = data[0];
-
   store.dispatch(setRootTopic(rootTopic));
   store.dispatch(setCurrentTopic(currentTopic));
+
   if (data.length === 3) {
     const [subTopic] = data.slice(-2, -1);
-    store.dispatch(setSubTopic(subTopic));
-  } 
+    store.dispatch(setSubTopic(subTopic))
+    if (subTopic) {
+      const subList = await getRelaTopicList(subTopic);
+      store.dispatch(setTopicList({ data: subList, target: "sub" }));
+    }
+  }
+  if (currentTopic) {
+    const levelList = await getRelaTopicList(currentTopic);
+    store.dispatch(setTopicList({ data: levelList, target: "current" }));
+  }
   store.dispatch(setTopicLoading(false));
-
   const slug = `${ROUTER_STUDY}/${data.slice(0, data.length - 1).map(({ slug }) => slug).join("/")}`;
   const path = `/${slug}/${data[data.length - 1].slug}`;
 

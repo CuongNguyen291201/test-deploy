@@ -30,31 +30,6 @@ const initialState: TopicState = {
   currentIndex: -1
 }
 
-export const fetchTopicsList = createAsyncThunk("topic/fetchCurrentList", async (args: { parentId: string; courseId: string; userId?: string; target: "current" | "sub" }) => {
-  const topics = await apiOffsetTopicsByParentId({
-    courseId: args.courseId,
-    parentId: args.parentId,
-    userId: args.userId,
-    topicFields: [
-      "_id",
-      "childType",
-      "type",
-      "status",
-      "videoUrl",
-      "courseId",
-      "name",
-      "shortDescription",
-      "slug",
-      "orderIndex",
-      "parentId"
-    ]
-  });
-  return {
-    data: topics,
-    target: args.target
-  }
-});
-
 const topicSlice = createSlice({
   name: "topic",
   initialState,
@@ -73,21 +48,14 @@ const topicSlice = createSlice({
     },
     setCurrentTopicIndex: (state, action: PayloadAction<number>) => {
       state.currentIndex = action.payload;
-    }
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchTopicsList.fulfilled, (state, action) => {
+    },
+    setTopicList: (state, action: PayloadAction<{ data: TopicItem[]; target: "sub" | "current" }>) => {
       if (action.payload.target === "current") {
         state.currentList = action.payload.data;
-        const currentTopicIdx = action.payload.data.findIndex((topic) => topic._id === state.currentTopic?._id);
-        if (currentTopicIdx !== -1) state.currentTopic = action.payload.data[currentTopicIdx];
-        state.currentIndex = currentTopicIdx;
       } else {
         state.subList = action.payload.data;
-        const subTopic = action.payload.data.find((topic) => topic._id === state.subTopic?._id);
-        if (subTopic) state.subTopic = subTopic;
       }
-    })
+    }
   }
 });
 
@@ -96,6 +64,7 @@ export const {
   setSubTopic,
   setCurrentTopic,
   setTopicLoading,
-  setCurrentTopicIndex
+  setCurrentTopicIndex,
+  setTopicList
 } = topicSlice.actions;
 export default topicSlice.reducer;
