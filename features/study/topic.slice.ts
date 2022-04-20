@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Topic from "../../modules/share/model/topic";
 import TopicExercise from "../../modules/share/model/topicExercise";
 import TopicProgress from "../../modules/share/model/topicProgress";
-import { apiOffsetTopicsByParentId } from "./topic.api";
 
 export type TopicItem = Topic & { topicProgress: TopicProgress; topicExercise: Pick<TopicExercise, "questionsNum" | "contentType" | "duration"> }
 

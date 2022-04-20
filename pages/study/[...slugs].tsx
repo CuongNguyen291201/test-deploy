@@ -44,6 +44,7 @@ const LearnPage = (props: PropsWithoutRef<LearnPageProps>) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ query, store }) => {
   const slugs = query.slugs as string[];
+  console.log(slugs);
   if (!slugs.length) return { notFound: true }
 
   const appName = process.env.NEXT_PUBLIC_APP_NAME;
