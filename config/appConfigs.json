@@ -1,0 +1,13 @@
+{
+  "cdl": {
+    "navBackground": "rgba(22, 27, 32, 0.95)",
+    "menuBackground": "#006684",
+    "menuTextColor": "#fff",
+    "menuHoverColor": "#00C9E4",
+    "appBorder": "1px solid #67878B",
+    "appBackground": "rgba(22, 27, 32, 0.95)",
+    "appHoverBackground": "#38799D",
+    "appTextColor": "#fff",
+    "appHoverColor": "#fff"
+  }
+}

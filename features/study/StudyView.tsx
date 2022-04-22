@@ -12,7 +12,7 @@ const StudyView = () => {
 
   return <LoadingContainer loading={loading || authLoading} useDelay>
     <div id="main-study-view">
-      <Container maxWidth="xl">
+      <Container maxWidth="xl_game">
         <h1 className="root-topic-name">{`${rootTopic?.name}${subTopic ? `: ${subTopic?.name}` : ''}`}</h1>
         <Grid container spacing={1}>
           {/* Question Palette */}

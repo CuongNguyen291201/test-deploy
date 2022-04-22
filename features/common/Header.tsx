@@ -1,44 +1,50 @@
-import { AppBar, Container, Grid, useMediaQuery, Theme } from "@mui/material";
-import classNames from "classnames";
-import Link from "next/link";
+import { AppBar, Container } from "@mui/material";
 import { useSelector } from "../../app/hooks";
-import AppDownloadButton from "./AppDownloadButton";
+import Link from "next/link"
+import appConfigs from "../../config/appConfigs.json";
 import "./Header.scss";
+import AppDownloadButton from "./AppDownloadButton";
 
 const Header = () => {
-  const appInfo = useSelector((state) => state.appInfos.appInfo);
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down("md"));
-
-  return (<AppBar position="static" color="transparent" elevation={0}>
-    <Container maxWidth="xl">
-      <Grid container spacing={1} alignItems="center">
-        <Grid item xs={3}>
-          {/* LOGO */}
-          <div style={{ height: 100 }}>
-            <Link href={process.env.NODE_ENV === "production" ? appInfo?.siteAddress : '/'}>
-              <a><img src={appInfo?.appLogo} alt="logo" style={{ width: "auto", height: "100%" }} /></a>
+  const { appLogo, appName, linkGooglePlay, linkAppStore, siteAddress } = useSelector((state) => state.appInfos.appInfo);
+  const appConfig = appConfigs[appName];
+  return <AppBar position="sticky" color="transparent" elevation={0}>
+    <div className="app-bar-header" style={{
+      background: appConfig.navBackground
+    }}>
+      <Container maxWidth="xl">
+        <div className="app-bar-header-nav">
+          <div style={{ height: 82.5 }}>
+            <Link href={process.env.NODE_ENV === "production" ? siteAddress : '/'}>
+              <a><img src={appLogo} alt="logo" style={{ width: "auto", height: "100%" }} /></a>
             </Link>
           </div>
-        </Grid>
 
-        <Grid item xs={6}>
-          <div className={classNames("app-buttons", isMobile ? "hide-on-mobile" : "")}>
-            {/* CH Play & AppStore */}
-            <AppDownloadButton source="chplay" link={appInfo?.linkGooglePlay} linkStyle={{ marginRight: "30px" }} />
-            <AppDownloadButton source="appstore" link={appInfo?.linkAppStore} />
+          <div className="app-bar-header-app-buttons">
+            <AppDownloadButton
+              source="chplay"
+              link={linkGooglePlay}
+              linkStyle={{ marginRight: 15 }}
+              color={appConfig.appTextColor}
+              hoverColor={appConfig.appHoverColor}
+              background={appConfig.appBackground}
+              hoverBackround={appConfig.appHoverBackground}
+              border={appConfig.appBorder}
+            />
+            <AppDownloadButton
+              source="appstore"
+              link={linkAppStore}
+              color={appConfig.appTextColor}
+              hoverColor={appConfig.appHoverColor}
+              background={appConfig.appBackground}
+              hoverBackround={appConfig.appHoverBackground}
+              border={appConfig.appBorder}
+            />
           </div>
-        </Grid>
-
-        <Grid item xs={3}>
-          {/* Menu: HOME & BLOG */}
-          <div className={classNames("desktop-menu", isMobile ? "hide-on-mobile" : "")} >
-            <div className="desktop-menu-link"><Link href="/"><a className="plain-anchor-tag">Home</a></Link></div>
-            <div className="desktop-menu-link"><Link href="/blog"><a className="plain-anchor-tag">Blog</a></Link></div>
-          </div>
-        </Grid>
-      </Grid>
-    </Container>
-  </AppBar>);
+        </div>
+      </Container>
+    </div>
+  </AppBar>
 }
 
 export default Header;

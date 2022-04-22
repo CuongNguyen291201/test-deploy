@@ -6,7 +6,7 @@ import { wrapper } from "../../app/store";
 import { apiGetAppSettingDetails } from "../../features/appInfo/appInfo.api";
 import { setAppInfo } from "../../features/appInfo/appInfo.slice";
 import { registerUserId } from "../../features/auth/auth.slice";
-import Layout from "../../features/common/Layout";
+import StudyLayout from "../../features/study/StudyLayout";
 import StudyView from "../../features/study/StudyView";
 import { apiGetEntryTopicsBySlugs } from "../../features/study/topic.api";
 import { setCurrentTopic, setRootTopic, setSubTopic, setTopicList, setTopicLoading } from "../../features/study/topic.slice";
@@ -37,9 +37,9 @@ const LearnPage = (props: PropsWithoutRef<LearnPageProps>) => {
     }
   }, [authLoading]);
 
-  return (<Layout {...appInfo} slug={props.slug}>
+  return (<StudyLayout {...appInfo} slug={props.slug}>
     <StudyView />
-  </Layout>)
+  </StudyLayout>)
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(async ({ query, store }) => {
