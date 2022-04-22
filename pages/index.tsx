@@ -15,23 +15,25 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
   const { seoInfo } = props;
   const dispatch = useDispatch();
   const { favicon, siteAddress } = useSelector((state) => state.appInfos.appInfo);
-  const { titleH1, summary, ...seoProps } = seoInfo;
+  const { titleH1, summary, seoTitle, ...seoProps } = seoInfo;
 
   useEffect(() => {
-    dispatch(setSEOInfo(seoInfo))    
-  },[]);
+    dispatch(setSEOInfo(seoInfo))
+  }, []); 
 
-  return (<Layout siteAddress={siteAddress} favicon={favicon} {...seoProps}>
+  return (<Layout siteAddress={siteAddress} favicon={favicon} title={seoTitle} {...seoProps}>
     <Header />
+    {/* Nav * /}
+    {/* Hero Section */}
+    {/* CTA Section: Go To Test List */}
+    {/* Web Functions */}
+    {/* AppFunctions */}
+    {/* Review */}
+    {/* Download App */}
+    {/* Introduction */}
+    {/* Footer */}
   </Layout>);
 }
-
-// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(({ store }) => {
-//   store.dispatch({ type: "INCREMENT" });
-//   return {
-//     props: {}
-//   }
-// });
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   const appName = process.env.NEXT_PUBLIC_APP_NAME;
