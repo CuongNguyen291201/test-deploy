@@ -1,0 +1,40 @@
+#functions {
+  background: linear-gradient(180deg, rgba(230, 238, 240, 0.5) 0%, rgba(255, 255, 255, 0.5) 13.02%, rgba(254, 254, 255, 0.5) 76.04%, rgba(230, 238, 240, 0.5) 100%);
+  .title-function {
+      color: #133A5C;
+      font-size: 35px;
+      font-weight: 600;
+      padding: 40px 0 15px;
+      margin: 0;
+  }
+  #web-function {
+    .go-test {
+      background: #15A5B9;
+      border-radius: 15px;
+      padding-bottom: 10px;
+      width: fit-content;
+      text-align: center;
+      margin: 0 auto;
+      .btn-go-test {
+        color: #fff;
+        font-size: 25px;
+        font-weight: 800;
+        text-transform: uppercase;
+        background: #00CBE7;
+        padding: 20px 17px;
+        border-radius: 15px;
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        // margin: 0 auto;
+        @media (max-width: 426.98px) {
+          font-size: 16px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+  #app-function {
+    padding-bottom: 80px;
+  }
+}

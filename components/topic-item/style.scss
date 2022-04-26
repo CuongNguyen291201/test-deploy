@@ -1,0 +1,40 @@
+#test-item {
+  box-shadow: 0px 6px 15px rgba(218, 220, 237, 0.5);
+  border-radius: 20px;
+  background: #fff;
+  width: fit-content;
+  .test-img {
+    img {
+      width: 100%;
+    }
+    // @media (max-width: 426.98px) {
+    //   width: 100%;
+    // }
+  }
+  .test-content {
+    color: #505050;
+    padding: 0 25px;
+    .test-name {
+      color: #000;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .test-desc {
+      font-size: 14px;
+      font-weight: 400;
+      padding-bottom: 40px;
+    }
+    .questions-levels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 400;
+      .quantity {
+        font-weight: 700;
+      }
+    }
+  }
+  @media (max-width: 426.98px) {
+    width: 100%;
+  }
+}

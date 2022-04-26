@@ -1,0 +1,60 @@
+#download-app {
+    background: #E5E5E5;
+    .img-download {
+        width: 100%;
+        margin-bottom: -10px;
+    }
+    .content-direction {
+        text-align: left;
+        color: #234A60;
+        padding-bottom: 50px;
+        .title {
+            font-size: 50px;
+            font-weight: 700;
+            margin: 0;
+            @media (max-width: 769.98px) {
+                font-size: 32px;
+            }
+            @media (max-width: 426.98px) {
+                font-size: 24px;
+            }
+        }
+        .description {
+            font-size: 35px;
+            font-weight: 400;
+            padding-bottom: 30px;
+            @media (max-width: 769.98px) {
+                font-size: 26px;
+            }
+            @media (max-width: 426.98px) {
+                font-size: 20px;
+            }
+        }
+        .btn-link {
+            display: flex;
+            gap: 40px;
+            .btn-download, .btn-test {
+                color: #00CBE7;
+                font-size: 24px;
+                font-weight: 700;
+                padding: 10px 15px;
+                border-radius: 10px;
+                background: #234A60;
+                @media (max-width: 769.98px) {
+                    font-size: 16px;
+                }
+                @media (max-width: 426.98px) {
+                    font-size: 12px;
+                }
+            }
+            @media (max-width: 426.98px) {
+                justify-content: space-between;
+                gap: 0;
+            }
+            .btn-download {
+                display: flex;
+                gap: 12px;
+            }
+        }
+    }
+}

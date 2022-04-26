@@ -1,6 +1,14 @@
 import { PropsWithoutRef, useEffect } from "react";
 import { useDispatch, useSelector } from "../app/hooks";
 import { wrapper } from "../app/store";
+import DownloadApp from "../components/download-app";
+import Footer from "../components/footer";
+import Functions from "../components/functions";
+import HeroSection from "../components/hero-section";
+import Introduction from "../components/introduction";
+import Navigation from "../components/navigation";
+import Review from "../components/review";
+import ListTopic from "../components/list-topic";
 import { apiGetAppSettingDetails, apiGetSEOInfo } from "../features/appInfo/appInfo.api";
 import { setAppInfo, setSEOInfo } from "../features/appInfo/appInfo.slice";
 import Header from "../features/common/Header";
@@ -22,16 +30,25 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
   }, []); 
 
   return (<Layout siteAddress={siteAddress} favicon={favicon} title={seoTitle} {...seoProps}>
-    <Header />
+    {/* <Header /> */}
+    <Navigation />
+
     {/* Nav * /}
     {/* Hero Section */}
+    <HeroSection />
     {/* CTA Section: Go To Test List */}
+    <ListTopic />
     {/* Web Functions */}
     {/* AppFunctions */}
+    <Functions />
     {/* Review */}
+    <Review />
     {/* Download App */}
+    <DownloadApp website="CDL" />
     {/* Introduction */}
+    <Introduction />
     {/* Footer */}
+    <Footer />
   </Layout>);
 }
 

@@ -1,0 +1,26 @@
+#footer {
+    .main-footer {
+        background: #F1F8FB;
+        align-content: center;
+        color: #133A5C;
+        font-size: 22px;
+        font-weight: 600;
+        padding: 100px 0;
+        @media (max-width: 426.98px) {
+            padding: 50px 0;
+            font-size: 16px;
+        }
+        .menu {
+            text-align: center;
+        }
+    }
+    .social {
+        background: #202D31;
+        color: #849297;
+        font-size: 18px;
+        font-weight: 500;
+        .connect {
+            text-align: right;
+        }
+    }
+}
