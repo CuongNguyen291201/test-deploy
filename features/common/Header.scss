@@ -9,5 +9,9 @@
   }
   &-app-buttons {
     display: flex;
+    @media (max-width: 426.98px) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 }

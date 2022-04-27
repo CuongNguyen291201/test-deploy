@@ -2,7 +2,7 @@ import { Link } from '@mui/material';
 import React from 'react';
 import "./style.scss";
 
-const TopicItem = (props: { name?: string, description?: string, questions?: string, levels?: string, link?: string }) => {
+const CourseItem = (props: { name?: string, description?: string, questions?: string, levels?: string, link?: string }) => {
   const { name, description, questions, levels, link } = props;
 
   return (
@@ -28,4 +28,4 @@ const TopicItem = (props: { name?: string, description?: string, questions?: str
   )
 }
 
-export default TopicItem
+export default CourseItem

@@ -33,27 +33,45 @@
         .btn-link {
             display: flex;
             gap: 40px;
-            .btn-download, .btn-test {
+            .btn-test {
                 color: #00CBE7;
                 font-size: 24px;
                 font-weight: 700;
                 padding: 10px 15px;
                 border-radius: 10px;
                 background: #234A60;
-                @media (max-width: 769.98px) {
-                    font-size: 16px;
-                }
-                @media (max-width: 426.98px) {
-                    font-size: 12px;
-                }
+                width: fit-content;
             }
-            @media (max-width: 426.98px) {
-                justify-content: space-between;
-                gap: 0;
-            }
-            .btn-download {
+            @media (max-width: 769.98px) {
                 display: flex;
-                gap: 12px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-hover {
+                color: #00CBE7;
+                position: relative;
+                background: #234A60;
+                font-size: 24px;
+                font-weight: 700;
+                border-radius: 10px;
+                padding: 11px 20px;
+                .link-download-app {
+                    display: none;
+                    position: absolute;
+                }
+                &:hover .link-download-app {
+                    background: #234A60;
+                    padding: 20px 0;
+                    border-radius: 0 0 20px 20px;
+                    z-index: 1;
+                    left: 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 10px;
+                }
             }
         }
     }

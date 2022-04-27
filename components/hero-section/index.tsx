@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useSelector } from "../../app/hooks";
 import state from "../../config/state.json";
 import "./style.scss";
-import ContainerWeb from "../common/container/Container";
 
 const HeroSection = () => {
   const { seoInfo } = useSelector((state) => state.appInfos)
@@ -12,11 +11,11 @@ const HeroSection = () => {
 
   return (
     <div id="hero-section">
-      <ContainerWeb>
+      <Container maxWidth="xl">
         <h1 className="title-h1">{seoInfo?.titleH1}</h1>
         <div className="summary" dangerouslySetInnerHTML={{ __html: seoInfo?.summary }}></div>
         <div className="choose-state" onClick={() => setOpen(!open)}>Select Your State</div>
-      </ContainerWeb>
+      </Container>
       <Dialog open={open} onClose={() => setOpen(!open)} maxWidth="xl">
         <DialogTitle sx={{ background: "#00C9E4", color: "#fff" }}>
           <div style={{ textAlign: "center", display: "flex", justifyContent: "space-between", alignItems: "center" }}>

@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "../../../app/hooks";
 import { ROUTER_STUDY } from "../../../app/router";
 import Topic from "../../../modules/share/model/topic";
-import { setCurrentTopic, setCurrentTopicIndex, TopicItem } from "../topic.slice";
+import { setCurrentTopic, setCurrentTopicIndex, CourseItem } from "../topic.slice";
 import "./style.scss";
 
 const TOPIC_CHUNK_SIZE = 3;
@@ -28,7 +28,7 @@ const CurrentTopicList = () => {
   const currentTopicIdx = useSelector((state) => state.topicState.currentIndex);
   // const nextTopic = currentTopicIdx !== currentTopicList.length - 1 ? currentTopicList[currentTopicIdx + 1] : null;
 
-  const topicChunks: Array<Array<TopicItem>> = useMemo(() =>
+  const topicChunks: Array<Array<CourseItem>> = useMemo(() =>
     _.reduce(currentTopicList, (chunks, topic, index) => {
       const chunkIndex = Math.floor(index / TOPIC_CHUNK_SIZE);
       chunks[chunkIndex] = [...(chunks[chunkIndex] || []), topic];
@@ -40,7 +40,7 @@ const CurrentTopicList = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const onClickTopic = (item: TopicItem) => {
+  const onClickTopic = (item: CourseItem) => {
     if (item._id === currentTopic._id) return;
     const currentIndex = currentTopicList.findIndex((topic) => topic._id === item._id);
     dispatch(setCurrentTopic(item));

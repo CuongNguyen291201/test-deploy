@@ -40,7 +40,7 @@ const Layout = (props: PropsWithChildren<LayoutProps>) => {
     <style jsx global>
       {`
         body {
-          background-color: #F2F3F7 !important;
+          background-color: #fff !important;
         }
         .plain-anchor-tag {
           text-decoration: none;

@@ -3,17 +3,17 @@ import Topic from "../../modules/share/model/topic";
 import TopicExercise from "../../modules/share/model/topicExercise";
 import TopicProgress from "../../modules/share/model/topicProgress";
 
-export type TopicItem = Topic & { topicProgress: TopicProgress; topicExercise: Pick<TopicExercise, "questionsNum" | "contentType" | "duration"> }
+export type CourseItem = Topic & { topicProgress: TopicProgress; topicExercise: Pick<TopicExercise, "questionsNum" | "contentType" | "duration"> }
 
 export type TopicState = {
   rootTopic: Topic;
-  subTopic: TopicItem;
-  currentTopic: TopicItem;
+  subTopic: CourseItem;
+  currentTopic: CourseItem;
   loading: boolean;
   totalCurrent: number;
   totalSub: number;
-  currentList: TopicItem[];
-  subList: TopicItem[];
+  currentList: CourseItem[];
+  subList: CourseItem[];
   currentIndex: number;
 }
 
@@ -36,10 +36,10 @@ const topicSlice = createSlice({
     setRootTopic: (state, action: PayloadAction<Topic>) => {
       state.rootTopic = action.payload
     },
-    setSubTopic: (state, action: PayloadAction<TopicItem>) => {
+    setSubTopic: (state, action: PayloadAction<CourseItem>) => {
       state.subTopic = action.payload
     },
-    setCurrentTopic: (state, action: PayloadAction<TopicItem>) => {
+    setCurrentTopic: (state, action: PayloadAction<CourseItem>) => {
       state.currentTopic = action.payload;
     },
     setTopicLoading: (state, action: PayloadAction<boolean>) => {
@@ -48,7 +48,7 @@ const topicSlice = createSlice({
     setCurrentTopicIndex: (state, action: PayloadAction<number>) => {
       state.currentIndex = action.payload;
     },
-    setTopicList: (state, action: PayloadAction<{ data: TopicItem[]; target: "sub" | "current" }>) => {
+    setTopicList: (state, action: PayloadAction<{ data: CourseItem[]; target: "sub" | "current" }>) => {
       if (action.payload.target === "current") {
         state.currentList = action.payload.data;
       } else {

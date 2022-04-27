@@ -7,6 +7,11 @@
   font-family: "Poppins";
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-margin-top: 200px;
+}
+
 body {
   margin: 0;
   padding: 0;

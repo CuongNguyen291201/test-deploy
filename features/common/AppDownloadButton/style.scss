@@ -6,6 +6,10 @@
   align-items: center;
   padding: 0 24px;
   cursor: pointer;
+  @media (max-width: 426.98px) {
+    height: auto;
+    width: 185px;
+  }
 }
 
 .app-download-icon {
@@ -18,10 +22,16 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
+    @media (max-width: 426.98px) {
+      font-size: 10px;
+    }
   }
   .app-download-src {
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
+    @media (max-width: 426.98px) {
+      font-size: 13px;
+    }
   }
 }

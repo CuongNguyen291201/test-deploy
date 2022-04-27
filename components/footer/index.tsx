@@ -1,6 +1,5 @@
-import { Grid, Link } from '@mui/material'
+import { Container, Grid, Link } from '@mui/material'
 import { useSelector } from '../../app/hooks'
-import ContainerWeb from '../common/container/Container'
 import './style.scss'
 
 const Footer = () => {
@@ -8,7 +7,7 @@ const Footer = () => {
     return (
         <div id="footer">
             <div className="main-footer">
-                <ContainerWeb>
+                <Container maxWidth="xl">
                     <Grid container spacing={2} textAlign="left">
                         <Grid item xs={12} md={2} lg={4}>
                             <Link href={process.env.NODE_ENV === "production" ? siteAddress : '/'}>
@@ -24,10 +23,10 @@ const Footer = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </ContainerWeb>
+                </Container>
             </div>
             <div className="social">
-                <ContainerWeb>
+                <Container maxWidth="xl">
                     <Grid container spacing={2} textAlign="center">
                         <Grid item xs={6} md={8} lg={11} className="connect">Connect with us</Grid>
                         <Grid item xs={6} md={4} lg={1}>
@@ -41,7 +40,7 @@ const Footer = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                </ContainerWeb>
+                </Container>
             </div>
         </div>
     )

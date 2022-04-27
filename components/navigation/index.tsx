@@ -7,7 +7,6 @@ import { isCDL } from "../../utils/checkApp";
 import appConfigs from "../../config/appConfigs.json";
 import "./style.scss";
 import styled from "@emotion/styled";
-import ContainerWeb from "../common/container/Container";
 
 const pages = ["Home", "Practice", "MockTest", "Blog"];
 

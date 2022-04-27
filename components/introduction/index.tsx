@@ -1,10 +1,10 @@
-import ContainerWeb from '../common/container/Container'
+import { Container } from '@mui/material'
 import './style.scss'
 
 const Introduction = () => {
     return (
         <div id="introduction">
-            <ContainerWeb>
+            <Container maxWidth="xl">
                 <ul className="list-intro">
                     <li className="title-intro">What is CDL?</li>
                     <div className="content-intro">
@@ -33,7 +33,7 @@ const Introduction = () => {
                         </ul>
                     </div>
                 </ul>
-            </ContainerWeb>
+            </Container>
         </div>
     )
 }

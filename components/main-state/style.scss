@@ -1,0 +1,35 @@
+#main-state {
+  color: #133A5C;
+  padding: 70px 0 100px;
+  .title {
+    font-weight: 600;
+    font-size: 26px;
+    text-align: center;
+    @media (max-width: 426px) {
+      font-size: 22px;
+    }
+  }
+  .topic {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    .topic-item {
+      border: 1px solid #CFCFCF;
+      box-sizing: border-box;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 9px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+  .course-by-topic {
+    text-align: left;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 40px 0 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

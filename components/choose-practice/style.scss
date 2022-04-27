@@ -1,0 +1,39 @@
+#choose-practice {
+  background: #fff;
+  box-shadow: 0px 6px 15px rgba(218, 220, 237, 0.5);
+  margin-top: -120px;
+  padding: 40px 65px;
+  @media (max-width: 426.98px) {
+    padding: 10px 15px;
+    margin: 0;
+  }
+  .title {
+    color: #133A5C;
+    font-size: 26px;
+    font-weight: 600;
+    padding-bottom: 50px;
+    @media (max-width: 426.98px) {
+      font-size: 20px;
+    }
+  }
+  .topic-practice {
+    width: 100%;
+    background: #FBFBFB;
+    border: 1px solid #F1F3F5;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #133A5C;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 15px;
+    .name {
+      @media (max-width: 426.98px) {
+        flex: 1;
+      }
+    }
+  }
+}

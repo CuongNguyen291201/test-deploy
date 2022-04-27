@@ -7,22 +7,29 @@
     img {
       width: 100%;
     }
-    // @media (max-width: 426.98px) {
-    //   width: 100%;
-    // }
   }
   .test-content {
     color: #505050;
     padding: 0 25px;
+    text-align: left;
+    @media (max-width: 768.98px) {
+      padding: 0 15px;
+    }
     .test-name {
       color: #000;
       font-size: 20px;
       font-weight: 600;
+      @media (max-width: 768.98px) {
+        font-size: 16px;
+      }
     }
     .test-desc {
       font-size: 14px;
       font-weight: 400;
       padding-bottom: 40px;
+      @media (max-width: 768.98px) {
+        font-size: 12px;
+      }
     }
     .questions-levels {
       display: flex;
@@ -31,6 +38,9 @@
       font-weight: 400;
       .quantity {
         font-weight: 700;
+      }
+      @media (max-width: 768.98px) {
+        font-size: 12px;
       }
     }
   }

@@ -1,13 +1,20 @@
 #review {
-    background: url(/assets/image/bg-review.png);
-    background-size: cover;
-    width: 100%;
-    height: 650px;
-    text-align: center;
-    .title-review {
-        padding-top: 50px;
-        @media (max-width: 320.98px) {
-            width: 100%;
-        }
+  background: url(/assets/image/bg-review.png);
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  text-align: center;
+  .title-review {
+    padding-top: 50px;
+    @media (max-width: 320.98px) {
+      width: 100%;
     }
+  }
+  .ac-item {
+    padding-top: 90px;
+    .img-review {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
 }

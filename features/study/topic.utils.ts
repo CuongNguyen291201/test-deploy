@@ -1,7 +1,7 @@
 import { apiOffsetTopicsByParentId } from "./topic.api";
-import { TopicItem } from "./topic.slice";
+import { CourseItem } from "./topic.slice";
 
-export const getRelaTopicList = async (topic: TopicItem) => {
+export const getRelaTopicList = async (topic: CourseItem) => {
   const topics = await apiOffsetTopicsByParentId({
     courseId: topic.courseId,
     parentId: topic.parentId,

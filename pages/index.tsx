@@ -8,12 +8,13 @@ import HeroSection from "../components/hero-section";
 import Introduction from "../components/introduction";
 import Navigation from "../components/navigation";
 import Review from "../components/review";
-import ListTopic from "../components/list-topic";
+import ListCourse from "../components/list-course";
 import { apiGetAppSettingDetails, apiGetSEOInfo } from "../features/appInfo/appInfo.api";
 import { setAppInfo, setSEOInfo } from "../features/appInfo/appInfo.slice";
 import Header from "../features/common/Header";
 import Layout from "../features/common/Layout";
 import WebSeo from "../modules/share/model/webSeo";
+// import "swiper/css/bundle";
 
 type IndexPageProps = {
   seoInfo: WebSeo
@@ -30,24 +31,14 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
   }, []); 
 
   return (<Layout siteAddress={siteAddress} favicon={favicon} title={seoTitle} {...seoProps}>
-    {/* <Header /> */}
+    <Header />
     <Navigation />
-
-    {/* Nav * /}
-    {/* Hero Section */}
     <HeroSection />
-    {/* CTA Section: Go To Test List */}
-    <ListTopic />
-    {/* Web Functions */}
-    {/* AppFunctions */}
+    <ListCourse />
     <Functions />
-    {/* Review */}
     <Review />
-    {/* Download App */}
-    <DownloadApp website="CDL" />
-    {/* Introduction */}
+    <DownloadApp />
     <Introduction />
-    {/* Footer */}
     <Footer />
   </Layout>);
 }

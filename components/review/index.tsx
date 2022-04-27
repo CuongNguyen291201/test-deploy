@@ -1,62 +1,45 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Grid } from '@mui/material'
-import 'swiper/swiper.min.css'
-import ContainerWeb from '../common/container/Container'
-import review from './review.json'
-import './style.scss'
+import { Container, Grid } from '@mui/material'
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper/core";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper.min.css";
+SwiperCore.use([Autoplay, Pagination, Navigation]);
+import "./style.scss";
+
 
 const Review = () => {
   return (
     <div id="review">
-      <ContainerWeb>
+      <Container maxWidth="xl">
         <img src="/assets/image/title-review.png" className="title-review" />
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            {/* <Swiper
+        <Grid container spacing={2} gap="15px">
+          <Grid item xs={12} lg={8}>
+            <Swiper
               key={1}
               autoplay={{ delay: 5000, disableOnInteraction: false }}
               slidesPerView={1}
-              spaceBetween={0}
-              pagination={{}}
+              slidesPerGroup={1}
+              spaceBetween={15}
               className="swiper-achievement"
-              breakpoints={{
-                "0": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
-                },
-                "576": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
-                },
-                "768": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
-                },
-                "992": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
-                },
-                "1200": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
-                },
-                "1400": {
-                  slidesPerView: 1,
-                  spaceBetween: 20
+              pagination={{
+                clickable: true,
+                el: ".swiper-pagination",
+                renderBullet: function (index, className) {
+                  return '<span class="' + className + '">' + (index + 1) + "</span>";
                 }
               }}
+              // pagination={true}
             >
-              {review.map((item, index) => (
-                <SwiperSlide key={index}>
+              {[1, 2].map(item => (
+                <SwiperSlide key={item}>
                   <div className="ac-item">
-                    <img src={`/assets/image/${item.name}.png`} alt="" />
-                  </div>
+                    <img src={`/assets/image/review-${item}.png`} alt="" className="img-review" />
+                    </div>
                 </SwiperSlide>
               ))}
-            </Swiper> */}
+            </Swiper>
           </Grid>
         </Grid>
-      </ContainerWeb>
+      </Container>
     </div>
   )
 }
