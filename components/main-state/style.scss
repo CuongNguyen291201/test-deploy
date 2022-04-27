@@ -31,5 +31,18 @@
     padding: 40px 0 30px;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 426.98px) {
+      flex-direction: column;
+    }
+    .select-type {
+      select {
+        background: #F2F2F2;
+        border: none;
+        background-position: right center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        padding: 9px 13px;
+      }
+    }
   }
 }

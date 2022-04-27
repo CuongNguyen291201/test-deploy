@@ -38,4 +38,17 @@ const Introduction = () => {
     )
 }
 
+// {
+//     "cdl": [
+//       {
+//         "title": "",
+//         "content": ""
+//       },
+//       {
+//         "title": "",
+//         "content": ""
+//       }
+//     ]
+//   }
+
 export default Introduction

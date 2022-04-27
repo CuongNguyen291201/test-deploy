@@ -43,4 +43,13 @@
       padding: 15px 40px;
     }
   }
+  .dialog-content {
+    padding: 40px 65px;
+    @media (max-width: 426px) {
+      padding: 10px;
+    }
+    @media (max-width: 426px) {
+      padding: 0;
+    }
+  }
 }

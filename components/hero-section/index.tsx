@@ -16,21 +16,23 @@ const HeroSection = () => {
         <div className="summary" dangerouslySetInnerHTML={{ __html: seoInfo?.summary }}></div>
         <div className="choose-state" onClick={() => setOpen(!open)}>Select Your State</div>
       </Container>
-      <Dialog open={open} onClose={() => setOpen(!open)} maxWidth="xl">
+      <Dialog open={open} onClose={() => setOpen(!open)} maxWidth="xl" sx={{ borderRadius: "15px" }}>
         <DialogTitle sx={{ background: "#00C9E4", color: "#fff" }}>
           <div style={{ textAlign: "center", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div className="title-dialog" style={{ flex: 1, fontWeight: 600, fontSize: "36px" }}>Select your state</div>
-            <CloseIcon onClick={() => setOpen(!open)} sx={{ cursor: "pointer" }}/>
+            <CloseIcon onClick={() => setOpen(!open)} sx={{ cursor: "pointer" }} />
           </div>
         </DialogTitle>
         <DialogContent>
-          <Grid className="dialog-state" container spacing={1}>
-            {state.cdl.map((item, index) => (
-              <Grid key={index} item xs={6} md={3} className="state-item" sx={{ padding: "10px 0 0 60px" }}>
-                <Link href={`/${item.slug}`} underline="none" sx={{ color: "#575757", fontSize: "20px", fontWeight: 500 }}>{item.name}</Link>
-              </Grid>
-            ))}
-          </Grid>
+          <div className="dialog-content">
+            <Grid container spacing={1}>
+              {state.cdl.map((item, index) => (
+                <Grid key={index} item xs={12} md={6} lg={3} className="state-item" sx={{ padding: "10px 0 0 60px" }}>
+                  <Link href={`/${item.slug}`} underline="none" sx={{ color: "#575757", fontSize: "20px", fontWeight: 500 }}>{item.name}</Link>
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

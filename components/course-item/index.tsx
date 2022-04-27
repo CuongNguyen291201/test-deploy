@@ -1,14 +1,13 @@
 import { Link } from '@mui/material';
-import React from 'react';
 import "./style.scss";
 
-const CourseItem = (props: { name?: string, description?: string, questions?: string, levels?: string, link?: string }) => {
-  const { name, description, questions, levels, link } = props;
+const CourseItem = (props: { name?: string, description?: string, questions?: string, levels?: string, link?: string, img?: string }) => {
+  const { name, description, questions, levels, link, img } = props;
 
   return (
     <Link href={link || "#"} underline="none">
       <div id="test-item">
-        <div className="test-img"><img src="/assets/image/test-item.png" /></div>
+        <div className="test-img"><img src={img || "/assets/image/test-item.png"} /></div>
         <div className="test-content">
           <p className="test-name">{name || "CDL general knowledge practice test"}</p>
           <p className="test-desc">{description || "This section is taken by all applicants, about CDL rules & requirements, safe driving, safe transportation of cargo, pre-trip vehicle inspections."}</p>

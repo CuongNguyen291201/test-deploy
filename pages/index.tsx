@@ -14,7 +14,6 @@ import { setAppInfo, setSEOInfo } from "../features/appInfo/appInfo.slice";
 import Header from "../features/common/Header";
 import Layout from "../features/common/Layout";
 import WebSeo from "../modules/share/model/webSeo";
-// import "swiper/css/bundle";
 
 type IndexPageProps = {
   seoInfo: WebSeo

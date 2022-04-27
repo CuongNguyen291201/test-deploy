@@ -2,9 +2,12 @@ import { Container, Grid, Link } from '@mui/material'
 import WebFunctions from './web-functions'
 import AppFunctions from './app-functions'
 import "./style.scss"
+import { useSelector } from '../../app/hooks'
 
-const Functions = (props: { link?: string, textBtn?: string }) => {
-  const { link, textBtn } = props;
+const link = ''
+
+const Functions = () => {
+  const { appName } = useSelector((state) => state.appInfos.appInfo);
 
   return (
     <div id="functions">
@@ -20,7 +23,7 @@ const Functions = (props: { link?: string, textBtn?: string }) => {
             </Grid>
           </Grid>
           <div className="go-test">
-            <Link href={link || "/"} underline="none" className="btn-go-test"><span className="btn-content">DO {textBtn || "CDL"} TEST ON OUR WEBSITE NOW!</span> <img src="/assets/image/icon-btn.png" /></Link>
+            <Link href={link || "/test"} underline="none" className="btn-go-test"><span className="btn-content">DO {appName || "CDL"} TEST ON OUR WEBSITE NOW!</span> <img src="/assets/image/icon-btn.png" /></Link>
           </div>
         </div>
         <div id="app-function">
