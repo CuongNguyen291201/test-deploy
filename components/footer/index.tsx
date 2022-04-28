@@ -1,9 +1,11 @@
 import { Container, Grid, Link } from '@mui/material'
 import { useSelector } from '../../app/hooks'
+import appConfig from '../../config/appConfigs.json'
 import './style.scss'
 
 const Footer = () => {
     const { appLogo, siteAddress } = useSelector((state) => state.appInfos.appInfo);
+    const { menu } = appConfig;
     return (
         <div id="footer">
             <div className="main-footer">
@@ -16,10 +18,9 @@ const Footer = () => {
                         </Grid>
                         <Grid item xs={12} md={10} lg={8} className="menu">
                             <Grid container spacing={2}>
-                                <Grid item xs={3}><Link href={process.env.NODE_ENV === "production" ? siteAddress : '/'}>Home</Link></Grid>
-                                <Grid item xs={3}><Link href="#pratice">Practice</Link></Grid>
-                                <Grid item xs={3}><Link href="/mock-test">Mock Test</Link></Grid>
-                                <Grid item xs={3}><Link href="/blog">Blog</Link></Grid>
+                                {menu.map((item, index) => (
+                                    <Grid item xs={3} key={index}><Link href={index === 0 ? (process.env.NODE_ENV === "production" ? siteAddress : '/') : item.slug}>{item.name}</Link></Grid>
+                                ))}
                             </Grid>
                         </Grid>
                     </Grid>

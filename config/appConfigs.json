@@ -9,5 +9,23 @@
     "appHoverBackground": "#38799D",
     "appTextColor": "#fff",
     "appHoverColor": "#fff"
-  }
+  },
+  "menu": [
+    {
+      "name": "Home",
+      "slug": "/"
+    },
+    {
+      "name": "Practice",
+      "slug": "/#practice"
+    },
+    {
+      "name": "Mock Test",
+      "slug": "/mock-test"
+    },
+    {
+      "name": "Blog",
+      "slug": "/blog"
+    }
+  ]
 }

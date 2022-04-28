@@ -43,13 +43,13 @@
       padding: 15px 40px;
     }
   }
-  .dialog-content {
-    padding: 40px 65px;
-    @media (max-width: 426px) {
-      padding: 10px;
-    }
-    @media (max-width: 426px) {
-      padding: 0;
-    }
+}
+.dialog-content-state {
+  padding: 35px !important;
+  @media (max-width: 426px) {
+    padding: 10px;
+  }
+  .state-item {
+    padding-bottom: 15px;
   }
 }

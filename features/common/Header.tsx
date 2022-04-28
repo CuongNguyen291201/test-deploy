@@ -4,6 +4,7 @@ import Link from "next/link"
 import appConfigs from "../../config/appConfigs.json";
 import "./Header.scss";
 import AppDownloadButton from "./AppDownloadButton";
+import Navigation from "../../components/navigation";
 
 const Header = () => {
   const { appLogo, appName, linkGooglePlay, linkAppStore, siteAddress } = useSelector((state) => state.appInfos.appInfo);
@@ -44,6 +45,7 @@ const Header = () => {
         </div>
       </Container>
     </div>
+    <Navigation />
   </AppBar>
 }
 

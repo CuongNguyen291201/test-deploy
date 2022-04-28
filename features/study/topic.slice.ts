@@ -15,6 +15,7 @@ export type TopicState = {
   currentList: CourseItem[];
   subList: CourseItem[];
   currentIndex: number;
+  topicByParentId: Topic[];
 }
 
 const initialState: TopicState = {
@@ -26,7 +27,8 @@ const initialState: TopicState = {
   totalSub: 0,
   currentList: [],
   subList: [],
-  currentIndex: -1
+  currentIndex: -1,
+  topicByParentId: [],
 }
 
 const topicSlice = createSlice({
@@ -54,6 +56,9 @@ const topicSlice = createSlice({
       } else {
         state.subList = action.payload.data;
       }
+    },
+    setTopicByParentId: (state, action: PayloadAction<Topic[]>) => {
+      state.topicByParentId = action.payload;
     }
   }
 });
@@ -64,6 +69,7 @@ export const {
   setCurrentTopic,
   setTopicLoading,
   setCurrentTopicIndex,
-  setTopicList
+  setTopicList,
+  setTopicByParentId
 } = topicSlice.actions;
 export default topicSlice.reducer;

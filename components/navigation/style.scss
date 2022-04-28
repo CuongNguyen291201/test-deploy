@@ -1,4 +1,16 @@
 #web-nav {
+  .main-menu {
+    height: 60px;
+    gap: 100px;
+    display: flex;
+    flex-grow: 1;
+    @media (max-width: 1024.98px) {
+      gap: 50px;
+    }
+    @media (max-width: 425.98px) {
+      display: none;
+    }
+  }
   .search {
     background: #005A74;
     border: 1px solid #0681A5;
@@ -17,7 +29,10 @@
       padding: 10px 10px 10px 20px;
       width: 350px;
       color: #fff;
-      height: 40px
+      height: 40px;
+      @media (max-width: 1024.98px) {
+        width: 100%;
+      }
     }
   }
 }

@@ -14,6 +14,8 @@ import { setAppInfo, setSEOInfo } from "../features/appInfo/appInfo.slice";
 import Header from "../features/common/Header";
 import Layout from "../features/common/Layout";
 import WebSeo from "../modules/share/model/webSeo";
+import { apiGetTopicByParentId } from "../features/study/topic.api";
+import { setTopicByParentId } from "../features/study/topic.slice";
 
 type IndexPageProps = {
   seoInfo: WebSeo
@@ -31,7 +33,6 @@ const IndexPage = (props: PropsWithoutRef<IndexPageProps>) => {
 
   return (<Layout siteAddress={siteAddress} favicon={favicon} title={seoTitle} {...seoProps}>
     <Header />
-    <Navigation />
     <HeroSection />
     <ListCourse />
     <Functions />
@@ -51,6 +52,8 @@ export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
     notFound: true
   }
   const seoInfo = await apiGetSEOInfo(appInfo._id, "/");
+  const stateAlabama = await apiGetTopicByParentId({ parentId: "6257ee9ea61e7d1328462395" });
+  store.dispatch(setTopicByParentId(stateAlabama));
   return {
     props: {
       seoInfo

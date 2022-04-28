@@ -26,3 +26,9 @@ export const apiOffsetTopicsByParentId = async (args: {
   const { data, error } = await postWithStatus({ endpoint: getEndpoint('/api/offset-topics-by-parent-id', serverSide), body: { field, asc, skip, ...rest } });
   return error ? [] : data;
 }
+
+export const apiGetTopicByParentId = async (args: { parentId: string, local?: boolean }) => {
+  const { parentId, local = true } = args;
+  const { data, error } = await post({ endpoint: getEndpoint('/api-cms/get-topic-by-parent-id', local), body: { parentId }});
+  return error ? [] : data;
+}
